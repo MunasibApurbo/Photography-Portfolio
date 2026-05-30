@@ -1,135 +1,106 @@
-# 📸 Premium Minimalist Photography Portfolio Template
+# Minimalist Photography Portfolio Template
 
-A premium, state-of-the-art, high-fidelity responsive photography portfolio built with **React**, **TypeScript**, **Vite**, **Tailored Vanilla CSS**, and **Framer Motion**. Featuring ultra-smooth inertia scrolling (via Lenis), custom masonry grids, dominant color sorting, touch-friendly fluid lightboxes, and a powerful image-optimization engine.
+A premium, highly polished photography portfolio built with React, TypeScript, and Framer Motion. 
 
-Designed for photographers and developers who want a gorgeous, lightning-fast, production-ready portfolio that is incredibly easy to manage and host.
+This repository was designed for photographers who want a minimalist, lightning-fast showcase for their work that doesn't get in the way of the photos. It includes ultra-smooth inertia scrolling (via Lenis), custom masonry layouts, Touch-gestures for mobile lightboxes, and a custom build pipeline that optimizes and categorizes your images automatically.
 
----
-
-## ✨ Features
-
-- ⚡ **Lightning Fast Performance**: Fully compiled with Vite and optimized to achieve near-perfect lighthouse scores.
-- 🎨 **Minimalist Premium Aesthetics**: Elegant dark mode, clean typography (Inter / Outfit), glassmorphic nav overlays, and beautiful micro-interactions.
-- 🖼️ **Automated Photo Processing**: A built-in custom script analyzes aspect ratios, extracts dominant colors (clustering into Red, Orange, Green, Cyan, Blue, Violet, Neutral via HSV conversion), and converts photos into highly-compressed dual-size `.webp` variants.
-- 📐 **Dynamic Masonry Layout**: Masonry photo grids that adapt naturally to vertical or landscape orientations.
-- 📱 **Responsive & Accessible**: Touch-gesture swipable lightboxes for mobile, full keyboard navigation (arrows/escape), skip-links, and semantic SEO markup.
-- ⚙️ **One-File Configuration**: Customize every single bio paragraph, stat, contact link, hero copy, and visual parameter from a single file (`src/config.ts`).
+![Portfolio Screenshot](public/screenshot.png)
 
 ---
 
-## 🚀 Quick Start Guide
+## Key Design Principles
 
-### 1. Clone & Install Dependencies
-First, install the package dependencies (includes `sharp` for server-side image processing):
+1. **Focus on the Media**: Dark mode by default, clean margins, and an elegant, typographic scale (using Outfit and Inter) so that your work is the primary focus.
+2. **Inertia & Smooth Motion**: Smooth physics-based scrolling and subtle fluid transitions create an organic, premium desktop experience.
+3. **Automated Image Optimizations**: A pre-configured Sharp pipeline processes original photographs down to lightweight web-ready sizes, extracts dominant color families, and clusters them dynamically.
+
+---
+
+## Quick Start
+
+### 1. Install Dependencies
 ```bash
 npm install
 ```
 
-### 2. Configure Your Portfolio
-Open `src/config.ts` and modify the values with your name, bio, social media targets, and category listings. Everything updates instantly across the site:
+### 2. Configure Your Profile
+Everything is controlled from a single configuration file. Open `src/config.ts` and update it with your biography, stats, and links:
+
 ```typescript
 export const config = {
-  name: 'Jane Doe',
-  title: 'Jane Doe | Photography',
-  email: 'janedoe@example.com',
+  name: 'Munasib Apurbo',
+  title: 'Munasib Apurbo | Photography',
+  email: 'hello@example.com',
   socials: {
-    linkedin: 'https://www.linkedin.com/in/janedoe/',
-    github: 'https://github.com/janedoe',
-    facebook: 'https://facebook.com/janedoe',
-    twitter: 'https://x.com/janedoe',
-    whatsapp: 'https://wa.me/1234567890',
+    linkedin: 'https://linkedin.com/...',
+    github: 'https://github.com/...',
   },
-  baseUrl: 'https://janedoe.com/',
+  baseUrl: 'https://munasibapurbo.com/',
   
   hero: {
-    title: 'Jane Doe',
+    title: 'Munasib Apurbo',
     subtitle: 'Everyday moments, shaped through color, mood, and memory.',
-    heroImageName: 'forest.jpg', // Raw image filename for hero backdrop
+    heroImageName: 'street_placeholder.svg',
   },
   
   about: {
     heading: 'I look for quiet moments that stay with me.',
     paragraphs: [
-      "Hey, I'm Jane Doe. I take photos on streets and walks...",
-      "I shoot with whatever I can get my hands on..."
+      "Hey, I shoot street, travel, and documentary stories...",
+      "I try to find the beauty in mundane streets..."
     ],
     stats: {
-      focus: 'Street, travel, portrait',
-      location: 'New York, USA',
-      gear: 'Whatever is in my hands',
+      focus: 'Street, travel, documentary',
+      location: 'Dhaka, Bangladesh',
+      gear: 'Sony A7IV • 35mm • 85mm',
     }
   }
 };
-
-// Define your visual gallery tab sections
-export const CATEGORY_ORDER = ['Street', 'Nature', 'Travel', 'Portrait', 'Still Life'] as const;
 ```
 
 ---
 
-## 📸 Adding and Optimizing Your Photos
+## Managing Your Gallery
 
-No more manual resizing, aspect-ratio calculations, or dominant color clustering! The built-in automated script does everything for you.
+No manual cropping, aspect ratio math, or color grouping needed. The template includes a custom-built processing script:
 
-1. **Delete the placeholder images** in `raw-images/` and drop your high-resolution original photographs (e.g. `.jpg`, `.png`, `.heic`) directly inside that folder.
-2. Run the optimization command:
+1. Place your raw camera exports (supports `.jpg`, `.png`, `.heic`, `.webp`) inside the `raw-images/` folder.
+2. Run the processing script:
    ```bash
    npm run optimize
    ```
-3. **What the script does behind the scenes:**
-   - Detects all newly added files, while skipping previously processed images for rapid incremental runs.
-   - Resizes each photo to standard web resolutions: `-900.webp` (for masonry grids) and `-1800.webp` (for high-fidelity lightboxes), saving them inside `public/optimized/`.
-   - Calculates the exact aspect ratio (`width / height`) to feed the masonry grid calculations.
-   - Resizes to `1x1` to read dominant RGB channels, converts them to HSV space, and groups the photo into its nearest logical color tier (Red, Orange, Yellow, Green, Cyan, Blue, Violet, Neutral) for chromatic gallery sorting.
-   - Automatically writes or updates the entire catalog inside `src/data/photoManifest.ts`.
-   - **Retains custom titles and categories** you've already filled out in previous runs, preventing data loss!
-4. Go to `src/data/photoManifest.ts` to easily assign categories (e.g., `'Nature'`, `'Street'`) and custom titles (e.g., `'Golden Hour Silhouette'`) to your new pictures.
+
+### Behind the Scenes
+* **Multi-size Output**: Generates optimized dual WebP variants (`-900.webp` and `-1800.webp`) inside `public/optimized/` using Sharp.
+* **Aspect Ratio Extraction**: Calculates exact ratios to lay out the masonry grid seamlessly without jumps or cumulative layout shifts.
+* **Color Family Classification**: Scales photos to `1x1` to read dominant RGB channels, maps them to HSV color bands (Red, Orange, Yellow, Green, Cyan, Blue, Violet, Neutral), and writes metadata directly to `src/data/photoManifest.ts`.
+* **Category Assigning**: Open [src/data/photoManifest.ts](src/data/photoManifest.ts) to easily change titles and assign categories (like `'Street'` or `'Nature'`). The script retains your titles and categories across future runs!
 
 ---
 
-## 🛠️ Development & Build Commands
+## Commands
 
-- **Run Dev Server**: Launch local hot-reloaded development environment:
+* **Local Dev Server**: Launch development build with hot module reloading:
   ```bash
   npm run dev
   ```
-- **Typecheck Code**: Audit TypeScript compiles clean:
-  ```bash
-  npm run typecheck
-  ```
-- **Build Production Bundle**: Create highly compressed static production bundle in `dist/`:
+* **Production Build**: Compile and optimize down to fully-static production assets:
   ```bash
   npm run build
   ```
-- **Preview Production Build**: Test your built bundle locally:
+* **Preview Build**: Preview the compiled production build locally:
   ```bash
   npm run preview
   ```
 
 ---
 
-## 🌐 Deploying to Production
+## Deployment
 
-This portfolio compiles down to clean, static HTML, JS, and CSS, making it perfect for free, zero-config hosting platforms:
+Since this builds to standard static HTML, JS, and CSS, it can be hosted for free on any modern static platform:
 
-### 🚀 Option A: Netlify (Recommended)
-This template includes a pre-configured `netlify.toml` file setting up high-performance cache controls for webp images and single-page routing:
-1. Connect your GitHub repository to Netlify.
-2. Set the build command to `npm run build` and publish directory to `dist`.
-3. Done! Updates deploy automatically every time you push to GitHub.
+### Netlify (Recommended)
+This repo contains a pre-configured `netlify.toml` file setting up aggressive cache-headers for static `.webp` assets and clean fallback routing. Just connect your GitHub repo, set the build command to `npm run build`, and publish directory to `dist`.
 
-### 🚀 Option B: Vercel
-1. Run `npx vercel` in the project root or connect Vercel to your repository.
-2. Select **Vite** as the framework template.
-3. Done!
-
-### 🚀 Option C: GitHub Pages
-Since this is a Vite-based single-page application, to host on GitHub Pages:
-1. Set the correct `base` path in `vite.config.ts` if your repository is a subfolder project (e.g. `base: '/my-repository-name/'`). If hosting under a custom root domain (e.g. `janedoe.com`), keep `base: '/'`.
-2. Configure a GitHub Actions workflow to build and deploy the `dist/` directory to your `gh-pages` branch.
-
----
-
-## 📄 License
-
-This template is open-sourced under the MIT License. Feel free to use, modify, and share it however you like!
+### Vercel
+Connect your repo to Vercel, select **Vite** as the framework preset, and click deploy.
