@@ -10,7 +10,18 @@ lerna-debug.log*
 node_modules
 dist
 dist-ssr
+.netlify
+.vercel
+.env
+.env.*
+!.env.example
 *.local
+
+# Keep original photo exports outside the deployable app.
+Edited/
+Originals/
+raw/
+photos-original/
 
 # Editor directories and files
 .vscode/*
