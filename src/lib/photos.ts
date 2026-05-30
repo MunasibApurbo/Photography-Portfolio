@@ -1,5 +1,7 @@
 import { imageMetadata, photoCatalog } from '../data/photoManifest';
-import type { PhotoCategory, PhotoColor } from '../data/photoManifest';
+import { config, CATEGORY_ORDER } from '../config';
+import type { PhotoCategory } from '../config';
+import type { PhotoColor } from '../data/photoManifest';
 
 export type Category = 'All' | PhotoCategory;
 
@@ -8,7 +10,7 @@ export type PortfolioPhoto = (typeof imageMetadata)[number] & {
   category: PhotoCategory;
 };
 
-const categoryOrder: PhotoCategory[] = ['Street', 'Nature', 'Travel', 'Portrait', 'Still Life'];
+const categoryOrder = CATEGORY_ORDER;
 export const colorOrder: PhotoColor[] = ['Red', 'Orange', 'Yellow', 'Green', 'Cyan', 'Blue', 'Violet', 'Neutral'];
 
 const colorSortValue = ({ colorFamily, colorRank }: Pick<(typeof imageMetadata)[number], 'colorFamily' | 'colorRank'>) =>
@@ -25,15 +27,16 @@ export const titleFromName = (name: string) =>
 const fallbackCategory = (name: string): PhotoCategory => {
   const normalizedName = name.toLowerCase();
 
-  if (/(bird|dog|cat|flower|rain|sky|morning|tree|cloud|leaf)/.test(normalizedName)) {
-    return 'Nature';
+  // Simple keyword matching for default fallback assignment
+  if (/(bird|dog|cat|flower|rain|sky|morning|tree|cloud|leaf|nature)/.test(normalizedName)) {
+    if ((categoryOrder as readonly string[]).includes('Nature')) return 'Nature' as PhotoCategory;
   }
 
-  if (/(bus|bike|road|street|tong|station|crossing)/.test(normalizedName)) {
-    return 'Street';
+  if (/(bus|bike|road|street|tong|station|crossing|city|urban)/.test(normalizedName)) {
+    if ((categoryOrder as readonly string[]).includes('Street')) return 'Street' as PhotoCategory;
   }
 
-  return 'Travel';
+  return categoryOrder[0];
 };
 
 export const optimizedPhoto = (name: string, width: 900 | 1800) => {
@@ -41,7 +44,7 @@ export const optimizedPhoto = (name: string, width: 900 | 1800) => {
   return `/optimized/${encodeURIComponent(`${stem}-${width}.webp`)}`;
 };
 
-export const photoAlt = (title: string) => `${title} by Munasib Apurbo`;
+export const photoAlt = (title: string) => `${title} by ${config.name}`;
 
 export const portfolio: PortfolioPhoto[] = imageMetadata
   .map((image) => {

@@ -1,7 +1,7 @@
 {
-  "name": "Munasib Apurbo Photography",
-  "short_name": "Munasib Apurbo",
-  "description": "Street, travel, and documentary photography from Bangladesh.",
+  "name": "Jane Doe Photography",
+  "short_name": "Jane Doe",
+  "description": "Street, travel, and portrait photography.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#000000",

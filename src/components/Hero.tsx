@@ -1,6 +1,7 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { optimizedPhoto } from '../lib/photos';
 import { ProtectedPhoto } from './ProtectedPhoto';
+import { config } from '../config';
 
 export function Hero() {
   const { scrollY } = useScroll();
@@ -11,6 +12,8 @@ export function Hero() {
     hidden: { y: 38, opacity: 0 },
     visible: { y: 0, opacity: 1, transition: { duration: 1, ease: customEase } },
   };
+
+  const bgPhotoName = config.hero.heroImageName || 'forest.jpg';
 
   return (
     <section id="home" className="hero-section" aria-label="Portfolio introduction">
@@ -24,12 +27,12 @@ export function Hero() {
       >
         <source
           type="image/webp"
-          srcSet={`${optimizedPhoto('pool.jpg', 900)} 900w, ${optimizedPhoto('pool.jpg', 1800)} 1800w`}
+          srcSet={`${optimizedPhoto(bgPhotoName, 900)} 900w, ${optimizedPhoto(bgPhotoName, 1800)} 1800w`}
           sizes="100vw"
         />
         <ProtectedPhoto
-          src={optimizedPhoto('pool.jpg', 1800)}
-          alt="Poolside photograph by Munasib Apurbo"
+          src={optimizedPhoto(bgPhotoName, 1800)}
+          alt={`Hero photograph by ${config.name}`}
           fetchPriority="high"
           decoding="async"
         />
@@ -41,12 +44,14 @@ export function Hero() {
         animate="visible"
         transition={{ staggerChildren: 0.09, delayChildren: 0.22 }}
       >
-        <motion.p variants={textVariants} className="hero-location">Street / Travel / Documentary</motion.p>
+        <motion.p variants={textVariants} className="hero-location">
+          {config.about.stats.focus}
+        </motion.p>
         <div style={{ overflow: 'hidden' }}>
-          <motion.h1 variants={textVariants}>Munasib Apurbo</motion.h1>
+          <motion.h1 variants={textVariants}>{config.hero.title || config.name}</motion.h1>
         </div>
         <motion.p variants={textVariants} className="hero-copy">
-          Everyday Bangladesh, shaped through color, mood, and memory.
+          {config.hero.subtitle}
         </motion.p>
       </motion.div>
 

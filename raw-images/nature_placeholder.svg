@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1200" width="900" height="1200">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#141419" />
+      <stop offset="100%" stop-color="#0c0c0e" />
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="url(#bg)" />
+
+  <!-- Viewfinder Frame -->
+  <rect x="30" y="30" width="840" height="1140" fill="none" stroke="#2d2d3c" stroke-width="1.5" stroke-dasharray="8 8" rx="8" />
+
+  <!-- Rule of Thirds Grid -->
+  <line x1="300" y1="30" x2="300" y2="1170" stroke="#1a1a24" stroke-width="1" />
+  <line x1="600" y1="30" x2="600" y2="1170" stroke="#1a1a24" stroke-width="1" />
+  <line x1="30" y1="400" x2="870" y2="400" stroke="#1a1a24" stroke-width="1" />
+  <line x1="30" y1="800" x2="870" y2="800" stroke="#1a1a24" stroke-width="1" />
+
+  <!-- Center Crosshair & AF Brackets (Green) -->
+  <circle cx="450" cy="600" r="8" fill="none" stroke="#00e676" stroke-width="1.5" stroke-opacity="0.8" />
+  <path d="M 420 580 L 420 570 L 430 570" fill="none" stroke="#00e676" stroke-width="2" stroke-linecap="round" />
+  <path d="M 480 580 L 480 570 L 470 570" fill="none" stroke="#00e676" stroke-width="2" stroke-linecap="round" />
+  <path d="M 420 620 L 420 630 L 430 630" fill="none" stroke="#00e676" stroke-width="2" stroke-linecap="round" />
+  <path d="M 480 620 L 480 630 L 470 630" fill="none" stroke="#00e676" stroke-width="2" stroke-linecap="round" />
+
+  <!-- Corner Viewfinder Marks -->
+  <path d="M 50 70 L 50 50 L 70 50" fill="none" stroke="#5d5d6c" stroke-width="2" />
+  <path d="M 850 70 L 850 50 L 830 50" fill="none" stroke="#5d5d6c" stroke-width="2" />
+  <path d="M 50 1130 L 50 1150 L 70 1150" fill="none" stroke="#5d5d6c" stroke-width="2" />
+  <path d="M 850 1130 L 850 1150 L 830 1150" fill="none" stroke="#5d5d6c" stroke-width="2" />
+
+  <!-- Text elements -->
+  <text x="60" y="80" font-family="monospace, sans-serif" font-size="12" fill="#8d8d9c" letter-spacing="2">REC [STANDBY]</text>
+  <circle cx="200" cy="76" r="4" fill="#00e676" />
+
+  <text x="840" y="80" text-anchor="end" font-family="monospace, sans-serif" font-size="12" fill="#8d8d9c" letter-spacing="1">RAW 14bit</text>
+
+  <!-- Central Metadata -->
+  <text x="450" y="500" text-anchor="middle" font-family="system-ui, sans-serif" font-weight="600" font-size="32" fill="#ffffff" letter-spacing="4">NATURE PHOTOGRAPHY</text>
+  <text x="450" y="690" text-anchor="middle" font-family="monospace, sans-serif" font-size="14" fill="#00e676" letter-spacing="3">SKELETON PLACEHOLDER</text>
+  <text x="450" y="720" text-anchor="middle" font-family="monospace, sans-serif" font-size="12" fill="#6d6d7c" letter-spacing="2">ASPECT RATIO 3:4 • GREEN CHANNEL</text>
+
+  <!-- Bottom Camera Data -->
+  <rect x="200" y="1125" width="500" height="30" fill="#0c0c0e" rx="4" stroke="#2d2d3c" stroke-width="1" />
+  <text x="450" y="1145" text-anchor="middle" font-family="monospace, sans-serif" font-size="12" fill="#00e676" letter-spacing="4">ISO 64 • 85mm • f/1.4 • 1/1000s</text>
+  
+  <text x="60" y="1145" font-family="monospace, sans-serif" font-size="12" fill="#5d5d6c" letter-spacing="1">BATTERY 92%</text>
+  <text x="840" y="1145" text-anchor="end" font-family="monospace, sans-serif" font-size="12" fill="#5d5d6c" letter-spacing="1">EXP. [-0.3]</text>
+</svg>

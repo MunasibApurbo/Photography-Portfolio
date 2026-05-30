@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { config } from '../config';
 
 export function About() {
   const customEase = [0.76, 0, 0.24, 1] as const;
@@ -15,7 +16,7 @@ export function About() {
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.9, delay: 0.08, ease: customEase }}
         >
-          I look for quiet moments that stay with me.
+          {config.about.heading}
         </motion.h2>
       </div>
 
@@ -26,25 +27,29 @@ export function About() {
         viewport={{ once: true, margin: '-100px' }}
         transition={{ duration: 0.9, ease: customEase }}
       >
-        <p>
-          Hey, I'm Munasib Apurbo. I take photos around Bangladesh, mostly on the streets, while traveling, or just on random walks when the light hits right.
-        </p>
-        <p>
-          I don't have a dedicated camera or anything — I just shoot with whatever I can get my hands on. A friend's phone, a borrowed DSLR, anything that takes a picture. It's never been about the gear for me. It's the colors, the mood, the little things most people walk right past.
-        </p>
+        {config.about.paragraphs.map((p, idx) => (
+          <p key={idx}>{p}</p>
+        ))}
+        
         <dl className="stats-list">
-          <div>
-            <dt>Focus</dt>
-            <dd>Street, travel, documentary</dd>
-          </div>
-          <div>
-            <dt>Based in</dt>
-            <dd>Bangladesh</dd>
-          </div>
-          <div>
-            <dt>Gear</dt>
-            <dd>Whatever I can find</dd>
-          </div>
+          {config.about.stats.focus && (
+            <div>
+              <dt>Focus</dt>
+              <dd>{config.about.stats.focus}</dd>
+            </div>
+          )}
+          {config.about.stats.location && (
+            <div>
+              <dt>Based in</dt>
+              <dd>{config.about.stats.location}</dd>
+            </div>
+          )}
+          {config.about.stats.gear && (
+            <div>
+              <dt>Gear</dt>
+              <dd>{config.about.stats.gear}</dd>
+            </div>
+          )}
         </dl>
       </motion.div>
     </section>

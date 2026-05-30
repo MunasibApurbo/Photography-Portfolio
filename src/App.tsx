@@ -11,6 +11,7 @@ import { NotFound } from './components/NotFound';
 import { ProtectedPhoto } from './components/ProtectedPhoto';
 import { usePhotoProtection } from './hooks/usePhotoProtection';
 import { portfolio, optimizedPhoto } from './lib/photos';
+import { config } from './config';
 import type { Category } from './lib/photos';
 import 'lenis/dist/lenis.css';
 import './index.css';
@@ -34,6 +35,11 @@ function App() {
   };
 
   usePhotoProtection();
+
+  // Set the dynamic website title from config
+  useEffect(() => {
+    document.title = config.title;
+  }, []);
 
   useEffect(() => {
     const shouldLockScroll = mobileMenuOpen || selectedImage !== null;
@@ -106,7 +112,7 @@ function App() {
           </main>
 
           <footer className="site-footer">
-            <span>© {new Date().getFullYear()} Munasib Apurbo. All rights reserved.</span>
+            <span>© {new Date().getFullYear()} {config.name}. All rights reserved.</span>
             <button className="footer-top" onClick={scrollToTop}>
               <span>Go to Top</span>
               <ArrowUp size={14} aria-hidden="true" />
@@ -266,9 +272,9 @@ function SiteNavigation({
   return (
     <>
       <header className="site-header">
-        <a className="brand" href="#home" onClick={(event) => handleSectionClick(event, 'home')} aria-label="Munasib Apurbo home">
+        <a className="brand" href="#home" onClick={(event) => handleSectionClick(event, 'home')} aria-label={`${config.name} home`}>
           <img src="/logo.png" alt="" />
-          <span>Munasib Apurbo</span>
+          <span>{config.name}</span>
         </a>
         <nav className="site-nav" aria-label="Primary navigation">
           <a href="#home" onClick={(event) => handleSectionClick(event, 'home')}>Home</a>
