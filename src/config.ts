@@ -6,7 +6,7 @@
  */
 
 export const config = {
-  // Your professional name
+  // Your professional name (Jane Doe is used here as a demo placeholder)
   name: 'Jane Doe',
 
   // Website title used for SEO and document headers

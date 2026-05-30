@@ -6,6 +6,9 @@ This repository was designed for photographers who want a minimalist, lightning-
 
 ![Portfolio Screenshot](public/screenshot.png)
 
+> [!NOTE]
+> This repository is preloaded with DSLR-viewfinder vector skeletons to serve as a **fully functioning demo** of the dynamic masonry grid, category filtering, and chromatic sorting features. This allows the template to compile and run instantly without requiring heavy, copyrighted photography files.
+
 ---
 
 ## Key Design Principles
